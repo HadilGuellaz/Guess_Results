@@ -2,8 +2,12 @@ package com.example.guess_results;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -71,4 +75,32 @@ public class DBHelper extends SQLiteOpenHelper {
         // Retourner l'ID de l'insertion ou -1 en cas d'erreur
         return id;
     }
+    public List<String> getAllModules() {
+        List<String> modules = new ArrayList<>();
+
+        // Obtenir une instance en lecture de la base de données
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // Exécuter la requête pour récupérer tous les enregistrements
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+
+        // Vérifier si des données sont présentes
+        if (cursor.moveToFirst()) {
+            do {
+                // Récupérer le nom du module à partir de la colonne "name"
+                String moduleName = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_NAME));
+                // Ajouter le nom du module à la liste
+                modules.add(moduleName);
+            } while (cursor.moveToNext());
+        }
+
+        // Fermer le curseur et la base de données
+        cursor.close();
+        db.close();
+
+        // Retourner la liste des noms des modules
+        return modules;
+    }
+
+
 }
