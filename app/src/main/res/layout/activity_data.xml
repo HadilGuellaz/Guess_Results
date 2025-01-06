@@ -8,7 +8,7 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-                <!-- Module name -->
+    <!-- Module name -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
         android:hint="Enter module name "
         android:textSize="25dp"/>
 
-                <!-- coefficient  -->
+    <!-- coefficient  -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
         android:hint="Enter module coefficient  "
         android:textSize="25dp"/>
 
-                <!-- Evaluation continue  -->
+    <!-- Evaluation continue  -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
         android:hint="Enter Evaluation continue note "
         android:textSize="25dp"/>
 
-                <!-- Evaluation continue % -->
+    <!-- Evaluation continue % -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
         android:hint="Enter Evaluation percentage "
         android:textSize="25dp"/>
 
-                <!-- Exam -->
+    <!-- Exam -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -83,7 +83,7 @@
         android:hint="Enter exam note  "
         android:textSize="25dp"/>
 
-                <!-- Exam% -->
+    <!-- Exam% -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -98,6 +98,7 @@
         android:hint="Enter exam percentage "
         android:textSize="25dp"/>
 
+<!--Button -->
     <Button
         android:id="@+id/save"
         android:layout_width="match_parent"
