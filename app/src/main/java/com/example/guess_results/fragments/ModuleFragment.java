@@ -23,7 +23,17 @@ public class ModuleFragment extends Fragment {
         view = inflater.inflate(R.layout.module_screen, container, false);
 
         addModuleButton = view.findViewById(R.id.addModuleButton);
+        addModuleButton.setOnClickListener(v -> navigateToDataFragment());
 
         return view;
+    }
+
+
+        private void navigateToDataFragment() {
+        DataFragment dataFragment = new DataFragment();
+        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, dataFragment);
+        transaction.addToBackStack(null); // Allows back navigation
+        transaction.commit();
     }
 }
