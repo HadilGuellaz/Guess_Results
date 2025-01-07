@@ -4,16 +4,24 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.guess_results.DBHelper;
+import com.example.guess_results.Module;
 import com.example.guess_results.R;
+
+import java.util.List;
 
 public class ResultsFragment extends Fragment {
 
-
+    private TableLayout modulesTable;
+    private TextView averageText;
     View view;
 
     @Nullable
@@ -21,41 +29,38 @@ public class ResultsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         view = inflater.inflate(R.layout.activity_results, container, false);
-
-        return view;
-
-
-        modulesTable = view.findViewById(R.id.modules_table);
+        modulesTable = view.findViewById(R.id.results_table);
         averageText = view.findViewById(R.id.average);
         loadModules();
+        return view;
     }
 
 
     
 
     private void loadModules() {
-        DBHelper dbHelper = new DBHelper(this);
+        DBHelper dbHelper = new DBHelper(getActivity());
         List<Module> modules = dbHelper.getAllModules();
         float totalMoy = 0;
         float totalCoef = 0;
 
         for (Module module : modules) {
-            TableRow newRow = new TableRow(this);
+            TableRow newRow = new TableRow(getActivity());
 
             // Création des TextViews pour chaque colonne
-            TextView nameText = new TextView(this);
+            TextView nameText = new TextView(getActivity());
             nameText.setText(module.getName());
             nameText.setPadding(8, 8, 8, 8);
 
-            TextView coefText = new TextView(this);
+            TextView coefText = new TextView(getActivity());
             coefText.setText(String.valueOf(module.getCoef()));
             coefText.setPadding(8, 8, 8, 8);
 
-            TextView evalText = new TextView(this);
+            TextView evalText = new TextView(getActivity());
             evalText.setText(String.valueOf(module.getEval()));
             evalText.setPadding(8, 8, 8, 8);
 
-            TextView examText = new TextView(this);
+            TextView examText = new TextView(getActivity());
             examText.setText(String.valueOf(module.getExam()));
             examText.setPadding(8, 8, 8, 8);
 
@@ -65,7 +70,7 @@ public class ResultsFragment extends Fragment {
             totalCoef += module.getCoef();
 
             // Créer un TextView pour la moyenne et l'afficher
-            TextView moyText = new TextView(this);
+            TextView moyText = new TextView(getActivity());
             moyText.setText(String.format("%.2f", moy));
             moyText.setPadding(8, 8, 8, 8);
 

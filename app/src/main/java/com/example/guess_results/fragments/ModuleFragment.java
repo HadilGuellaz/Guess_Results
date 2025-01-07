@@ -14,9 +14,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.guess_results.DBHelper;
+import com.example.guess_results.Module;
 import com.example.guess_results.R;
 import com.google.android.material.card.MaterialCardView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ModuleFragment extends Fragment {
@@ -33,7 +35,7 @@ public class ModuleFragment extends Fragment {
         // Initialize UI Components
         init();
 
-        // Navigate to DataFragment when button is clicked
+        // Navigate to DataFragment.java when button is clicked
         addModuleButton.setOnClickListener(v -> navigateToDataFragment());
 
         // Load Module Names from the Database
@@ -49,11 +51,16 @@ public class ModuleFragment extends Fragment {
 
     private void loadModuleNames() {
         DBHelper dbHelper = new DBHelper(getActivity());
-        List<String> moduleNames = dbHelper.getAllModuleNames();
+        List<Module> modules = dbHelper.getAllModules();
+        List<String> moduleNames =new ArrayList<>();
 
-        if (moduleNames.isEmpty()) {
+        if (modules.isEmpty()) {
+
             Toast.makeText(getActivity(), "Aucun module trouvé!", Toast.LENGTH_SHORT).show();
         } else {
+            for (Module module : modules) {
+                moduleNames.add(module.getName());
+            }
             ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 getActivity(),
                 android.R.layout.simple_list_item_1,
