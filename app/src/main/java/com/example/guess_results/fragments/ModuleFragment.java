@@ -22,6 +22,8 @@ public class ModuleFragment extends Fragment {
         super.onCreate(savedInstanceState);
         view = inflater.inflate(R.layout.module_screen, container, false);
 
+        addModuleButton = view.findViewById(R.id.addModuleButton);
+
         return view;
     }
 }
