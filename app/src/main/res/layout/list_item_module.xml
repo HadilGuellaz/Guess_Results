@@ -23,6 +23,6 @@
         android:layout_height="24dp"
         android:background="@android:color/transparent"
         android:contentDescription="Edit Module"
-        android:src="@android:drawable/ic_menu_edit" />
+        android:src="@drawable/edit" />
 
 </LinearLayout>

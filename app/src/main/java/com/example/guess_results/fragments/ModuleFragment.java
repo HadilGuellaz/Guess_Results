@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
@@ -15,6 +16,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.guess_results.DBHelper;
 import com.example.guess_results.Module;
+import com.example.guess_results.ModuleAdapter;
 import com.example.guess_results.R;
 import com.google.android.material.card.MaterialCardView;
 
@@ -26,6 +28,15 @@ public class ModuleFragment extends Fragment {
     private View view;
     private MaterialCardView addModuleButton;
     private ListView moduleListView;
+
+    DBHelper dbHelper;
+
+    List<Module> modules;
+    private ImageView editModule;
+
+    ModuleAdapter adapter;
+
+
 
     @Nullable
     @Override
@@ -47,28 +58,23 @@ public class ModuleFragment extends Fragment {
     private void init() {
         addModuleButton = view.findViewById(R.id.addModuleButton);
         moduleListView = view.findViewById(R.id.moduleListView);
+        editModule = view.findViewById(R.id.editModuleButton);
+
+        dbHelper = new DBHelper(getActivity());
+        modules = dbHelper.getAllModules();
+
     }
 
     private void loadModuleNames() {
-        DBHelper dbHelper = new DBHelper(getActivity());
-        List<Module> modules = dbHelper.getAllModules();
-        List<String> moduleNames =new ArrayList<>();
-
         if (modules.isEmpty()) {
-
             Toast.makeText(getActivity(), "Aucun module trouvé!", Toast.LENGTH_SHORT).show();
         } else {
-            for (Module module : modules) {
-                moduleNames.add(module.getName());
-            }
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                getActivity(),
-                android.R.layout.simple_list_item_1,
-                moduleNames
-            );
+            // Use the ModuleAdapter to display module names
+            adapter = new ModuleAdapter(getActivity(), modules);
             moduleListView.setAdapter(adapter);
         }
     }
+
 
     private void navigateToDataFragment() {
         DataFragment dataFragment = new DataFragment();
@@ -77,4 +83,13 @@ public class ModuleFragment extends Fragment {
         transaction.addToBackStack("ModuleFragment"); // Named backstack entry
         transaction.commit();
     }
+
+    private void navigateToEditDataFragment() {
+        DataFragment dataFragment = new DataFragment();
+        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, dataFragment);
+        transaction.addToBackStack("ModuleFragment"); // Named backstack entry
+        transaction.commit();
+    }
+
 }

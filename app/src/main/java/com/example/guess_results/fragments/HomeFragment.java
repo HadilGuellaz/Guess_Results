@@ -32,7 +32,6 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-
     private void navigateToModuleFragment() {
         ModuleFragment moduleFragment = new ModuleFragment();
         FragmentTransaction transaction = getParentFragmentManager().beginTransaction();

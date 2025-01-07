@@ -100,4 +100,19 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         return modules;
     }
+
+
+    public int updateModule(int id, String name, float coef, float eval, float evalPerc, float exam, float examPerc) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_NAME, name);
+        contentValues.put(COLUMN_COEF, coef);
+        contentValues.put(COLUMN_EVAL, eval);
+        contentValues.put(COLUMN_EVAL_PERC, evalPerc);
+        contentValues.put(COLUMN_EXAM, exam);
+        contentValues.put(COLUMN_EXAM_PERC, examPerc);
+
+        return db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?", new String[]{String.valueOf(id)});
+    }
+
 }

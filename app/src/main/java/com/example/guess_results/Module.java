@@ -1,6 +1,11 @@
 package com.example.guess_results;
 
-public class Module {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+public class Module implements Parcelable {
     private int id;
     private String name;
     private float coef;
@@ -98,5 +103,15 @@ public class Module {
                 ", exam=" + exam +
                 ", examPerc=" + examPerc +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+
     }
 }
