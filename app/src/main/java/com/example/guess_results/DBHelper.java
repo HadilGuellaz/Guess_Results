@@ -115,4 +115,15 @@ public class DBHelper extends SQLiteOpenHelper {
         return db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?", new String[]{String.valueOf(id)});
     }
 
+
+    public boolean deleteModule(long id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String whereClause = "id = ?";
+        String[] whereArgs = { String.valueOf(id) };
+        int rowsAffected = db.delete("modules", whereClause, whereArgs);
+        db.close();
+        return rowsAffected > 0;
+    }
+
+
 }

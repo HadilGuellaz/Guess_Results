@@ -46,6 +46,7 @@ public class ModuleFragment extends Fragment {
         // Initialize UI Components
         init();
 
+
         // Navigate to DataFragment.java when button is clicked
         addModuleButton.setOnClickListener(v -> navigateToDataFragment());
 
@@ -70,7 +71,7 @@ public class ModuleFragment extends Fragment {
             Toast.makeText(getActivity(), "Aucun module trouvé!", Toast.LENGTH_SHORT).show();
         } else {
             // Use the ModuleAdapter to display module names
-            adapter = new ModuleAdapter(getActivity(), modules);
+            adapter = new ModuleAdapter(getActivity(), modules, this);
             moduleListView.setAdapter(adapter);
         }
     }
@@ -84,12 +85,21 @@ public class ModuleFragment extends Fragment {
         transaction.commit();
     }
 
-    private void navigateToEditDataFragment() {
-        DataFragment dataFragment = new DataFragment();
-        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, dataFragment);
-        transaction.addToBackStack("ModuleFragment"); // Named backstack entry
-        transaction.commit();
+    public void deleteModule(int position) {
+        Module moduleToDelete = modules.get(position);
+
+        // Delete the module from the database
+        DBHelper dbHelper = new DBHelper(getActivity());
+        boolean isDeleted = dbHelper.deleteModule(moduleToDelete.getId());
+
+        if (isDeleted) {
+            Toast.makeText(getActivity(), "Module supprimé avec succès!", Toast.LENGTH_SHORT).show();
+            // Remove the module from the list
+            modules.remove(position);
+            adapter.notifyDataSetChanged();  // Notify the adapter to update the list
+        } else {
+            Toast.makeText(getActivity(), "Erreur lors de la suppression du module!", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }
