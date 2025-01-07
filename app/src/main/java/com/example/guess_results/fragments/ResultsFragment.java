@@ -20,7 +20,7 @@ public class ResultsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        view = inflater.inflate(R.layout.activity_home_screen, container, false);
+        view = inflater.inflate(R.layout.activity_results, container, false);
 
         return view;
     }
