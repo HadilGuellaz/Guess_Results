@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <!-- Module name -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Module Name"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp"/>
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter module name "
+        android:textSize="25dp"/>
+
+    <!-- coefficient  -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Coefficient"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp"/>
+    <EditText
+        android:id="@+id/coef"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter module coefficient  "
+        android:textSize="25dp"/>
+
+    <!-- Evaluation continue  -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Evaluation continue"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp"/>
+    <EditText
+        android:id="@+id/eval"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Evaluation continue note "
+        android:textSize="25dp"/>
+
+    <!-- Evaluation continue % -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Evaluation percentage"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp"/>
+    <EditText
+        android:id="@+id/eval_perc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Evaluation percentage "
+        android:textSize="25dp"/>
+
+    <!-- Exam -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Exam note"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp"/>
+    <EditText
+        android:id="@+id/exam"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter exam note  "
+        android:textSize="25dp"/>
+
+    <!-- Exam% -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Exam percentage"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp"/>
+    <EditText
+        android:id="@+id/exam_perc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter exam percentage "
+        android:textSize="25dp"/>
+
+<!--Button -->
+    <Button
+        android:id="@+id/save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="save"
+        android:textSize="25dp"/>
+</LinearLayout>
