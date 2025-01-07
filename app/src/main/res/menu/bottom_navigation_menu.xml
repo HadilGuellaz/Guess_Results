@@ -1,11 +1,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/page_1"
+        android:id="@+id/nav_home"
         android:enabled="true"
         android:icon="@drawable/icon_1"
         android:title="@string/text_label_1"/>
     <item
-        android:id="@+id/page_2"
+        android:id="@+id/nav_results"
         android:enabled="true"
         android:icon="@drawable/icon_2"
         android:title="@string/text_label_2"/>

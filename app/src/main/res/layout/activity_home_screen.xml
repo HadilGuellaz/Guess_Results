@@ -86,13 +86,13 @@
 
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/career_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="12dp"
             app:contentPadding="16dp"
             app:strokeWidth="1dp"
-            app:strokeColor="@color/black"
-            app:cardBackgroundColor="@drawable/button_outline_card">
+            app:strokeColor="@color/black">
 
             <!-- RelativeLayout to position the image and texts -->
             <RelativeLayout
@@ -137,61 +137,42 @@
                         <com.google.android.material.card.MaterialCardView
                             android:layout_width="70dp"
                             android:layout_height="20dp"
-                            app:textSize="12sp"
-                            android:textAllCaps="false"
+                            android:layout_gravity="center"
                             app:cardBackgroundColor="@color/cardColor"
                             android:elevation="4dp"
-                            app:strokeWidth="0dp"
-                            android:textAlignment="center"
-                            android:layout_gravity="center"
-                            app:cardCornerRadius="8dp">
-
+                            app:strokeWidth="0dp">
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:gravity="center"
-                                android:textColor="#4F7396"
                                 android:text="Semester 1"
-                                android:textAlignment="center"
-                                android:layout_gravity="center"
-                                android:textSize="12sp">
-
-                            </TextView>
-
-
+                                android:textColor="#4F7396"
+                                android:textSize="12sp"
+                                android:textAlignment="center" />
                         </com.google.android.material.card.MaterialCardView>
-                        <View android:layout_width="8dp" android:layout_height="0dp"/>
+
+                        <View
+                            android:layout_width="8dp"
+                            android:layout_height="0dp" />
+
                         <com.google.android.material.card.MaterialCardView
                             android:layout_width="70dp"
                             android:layout_height="20dp"
-                            app:textSize="12sp"
-                            android:textAllCaps="false"
+                            android:layout_gravity="center"
                             app:cardBackgroundColor="@color/cardColor"
                             android:elevation="4dp"
-                            app:strokeWidth="0dp"
-                            android:textAlignment="center"
-                            android:layout_gravity="center"
-                            app:cardCornerRadius="8dp">
-
+                            app:strokeWidth="0dp">
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:gravity="center"
                                 android:text="Semester 2"
-                                android:layout_gravity="center"
                                 android:textColor="#4F7396"
-
-                                android:textAlignment="center"
-                                android:textSize="12sp">
-
-                            </TextView>
-
-
+                                android:textSize="12sp"
+                                android:textAlignment="center" />
                         </com.google.android.material.card.MaterialCardView>
-
-
 
 
 
@@ -229,13 +210,6 @@
 
 
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:backgroundTint="#E8EDF2"
-        android:paddingBottom="20dp"
-        android:layout_alignParentBottom="true"
-        app:menu="@menu/bottom_navigation_menu" />
+
 
 </RelativeLayout>
