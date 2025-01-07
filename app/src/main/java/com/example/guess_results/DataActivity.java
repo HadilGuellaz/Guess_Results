@@ -1,5 +1,6 @@
 package com.example.guess_results;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,20 +21,16 @@ public class DataActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_data);
 
-        // Initialiser les vues avec les ID des éléments XML
         init();
 
-        // Ajouter un écouteur sur le bouton pour vérifier les champs
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Valider les champs
+
                 String validationMessage = validateFields();
 
                 if (validationMessage == null) {
-                    // Si tous les champs sont valides
 
-                    // Récupérer les données des champs
                     String nameValue = name.getText().toString();
                     float coefValue = Float.parseFloat(coef.getText().toString());
                     float evalValue = Float.parseFloat(eval.getText().toString());
@@ -41,20 +38,22 @@ public class DataActivity extends AppCompatActivity {
                     float examValue = Float.parseFloat(exam.getText().toString());
                     float examPercValue = Float.parseFloat(examPerc.getText().toString());
 
-                    // Créer une instance de DBHelper pour insérer les données dans la base de données
+
                     DBHelper dbHelper = new DBHelper(DataActivity.this);
                     long id = dbHelper.insertModule(nameValue, coefValue, evalValue, evalPercValue, examValue, examPercValue);
 
-                    // Vérifier si l'insertion a réussi
+
                     if (id != -1) {
-                        // Afficher un message de succès
+
                         Toast.makeText(DataActivity.this, "Données enregistrées avec succès!", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(DataActivity.this, ResultsActivity.class);
+                        startActivity(intent);
                     } else {
-                        // Afficher un message d'erreur
+
                         Toast.makeText(DataActivity.this, "Erreur lors de l'enregistrement des données!", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    // Si la validation échoue, afficher le message d'erreur
+
                     Toast.makeText(DataActivity.this, validationMessage, Toast.LENGTH_LONG).show();
                 }
             }
@@ -62,7 +61,7 @@ public class DataActivity extends AppCompatActivity {
     }
 
     private void init() {
-        // Initialisation des EditText avec leurs IDs
+
         name = findViewById(R.id.name);
         coef = findViewById(R.id.coef);
         eval = findViewById(R.id.eval);
@@ -70,13 +69,12 @@ public class DataActivity extends AppCompatActivity {
         exam = findViewById(R.id.exam);
         examPerc = findViewById(R.id.exam_perc);
 
-        // Initialisation du bouton
+
         saveButton = findViewById(R.id.save);
     }
 
-    // Fonction de validation des champs avec des messages d'erreur détaillés
     private String validateFields() {
-        // Vérifier que tous les champs sont remplis
+
         if (name.getText().toString().isEmpty() ||
                 coef.getText().toString().isEmpty() ||
                 eval.getText().toString().isEmpty() ||
@@ -86,7 +84,7 @@ public class DataActivity extends AppCompatActivity {
             return "Tous les champs doivent être remplis!";
         }
 
-        // Vérifier que les notes sont entre 0 et 20
+
         try {
             float evalNote = Float.parseFloat(eval.getText().toString());
             float examNote = Float.parseFloat(exam.getText().toString());
@@ -100,7 +98,7 @@ public class DataActivity extends AppCompatActivity {
             return "Veuillez entrer des nombres valides pour les notes!";
         }
 
-        // Vérifier que les pourcentages totalisent 100%
+
         try {
             float evalPercValue = Float.parseFloat(evalPerc.getText().toString());
             float examPercValue = Float.parseFloat(examPerc.getText().toString());
@@ -114,7 +112,7 @@ public class DataActivity extends AppCompatActivity {
             return "Veuillez entrer des pourcentages valides!";
         }
 
-        // Vérifier que le coefficient est supérieur à 0
+
         try {
             float coefValue = Float.parseFloat(coef.getText().toString());
             if (coefValue <= 0) {
@@ -124,7 +122,7 @@ public class DataActivity extends AppCompatActivity {
             return "Veuillez entrer un coefficient valide!";
         }
 
-        // Si toutes les validations passent
+
         return null;
     }
 }
