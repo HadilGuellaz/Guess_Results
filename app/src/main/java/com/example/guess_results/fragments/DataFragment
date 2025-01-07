@@ -45,7 +45,7 @@ public class DataFragment extends Fragment {
 
                 if (id != -1) {
                     Toast.makeText(getActivity(), "Données enregistrées avec succès!", Toast.LENGTH_SHORT).show();
-                    getParentFragmentManager().popBackStack();
+                    getParentFragmentManager().popBackStack("ModuleFragment", 0);
 
                 } else {
                     Toast.makeText(getActivity(), "Erreur lors de l'enregistrement des données!", Toast.LENGTH_SHORT).show();
