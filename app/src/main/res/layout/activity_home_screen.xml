@@ -64,7 +64,8 @@
                     android:layout_height="80dp"
                       android:layout_alignParentEnd="true"
                      android:layout_centerVertical="true"
-                    android:layout_marginStart="16dp"/>
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/ntic"/>
 
             </RelativeLayout>
 
@@ -92,7 +93,8 @@
             app:cardCornerRadius="12dp"
             app:contentPadding="16dp"
             app:strokeWidth="1dp"
-            app:strokeColor="@color/black">
+            app:strokeColor="@color/black"
+            app:cardBackgroundColor="@color/white">
 
             <!-- RelativeLayout to position the image and texts -->
             <RelativeLayout
@@ -193,7 +195,8 @@
                     android:layout_height="80dp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginStart="16dp"/>
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/career1"/>
 
             </RelativeLayout>
 

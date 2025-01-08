@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="12dp"
+    android:paddingHorizontal="12dp"
     android:gravity="center_vertical"
     android:background="@android:color/white">
 
@@ -21,8 +22,17 @@
         android:id="@+id/editModuleButton"
         android:layout_width="24dp"
         android:layout_height="24dp"
+        android:layout_marginEnd="6dp"
         android:background="@android:color/transparent"
         android:contentDescription="Edit Module"
-        android:src="@android:drawable/ic_menu_edit" />
+        android:src="@drawable/edit" />
+
+    <ImageButton
+        android:id="@+id/deleteModuleButton"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="Edit Module"
+        android:src="@drawable/delete" />
 
 </LinearLayout>

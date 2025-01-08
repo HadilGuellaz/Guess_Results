@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -13,13 +11,17 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.guess_results.DBHelper;
+import com.example.guess_results.Module;
 import com.example.guess_results.R;
+import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.textfield.TextInputEditText;
 
-public class DataFragment extends Fragment {
+public class EditDataFragment extends Fragment {
 
-    private EditText name, coef, eval, evalPerc, exam, examPerc;
-    private Button saveButton;
+    private TextInputEditText name, coef, eval, evalPerc, exam, examPerc;
+    private MaterialCardView saveButton;
     private View view;
+    private Module moduleToEdit; // Module object to be edited
 
     @Nullable
     @Override
@@ -28,10 +30,25 @@ public class DataFragment extends Fragment {
 
         init();
 
+        if (getArguments() != null) {
+            moduleToEdit = getArguments().getParcelable("module");
+
+            if (moduleToEdit != null) {
+                // Prepopulate the EditText fields with the values of the selected Module
+                name.setText(moduleToEdit.getName());
+                coef.setText(String.valueOf(moduleToEdit.getCoef()));
+                eval.setText(String.valueOf(moduleToEdit.getEval()));
+                evalPerc.setText(String.valueOf(moduleToEdit.getEvalPerc()));
+                exam.setText(String.valueOf(moduleToEdit.getExam()));
+                examPerc.setText(String.valueOf(moduleToEdit.getExamPerc()));
+            }
+        }
+
         saveButton.setOnClickListener(v -> {
             String validationMessage = validateFields();
 
             if (validationMessage == null) {
+                // Gather updated values from EditText
                 String nameValue = name.getText().toString();
                 float coefValue = Float.parseFloat(coef.getText().toString());
                 float evalValue = Float.parseFloat(eval.getText().toString());
@@ -39,35 +56,39 @@ public class DataFragment extends Fragment {
                 float examValue = Float.parseFloat(exam.getText().toString());
                 float examPercValue = Float.parseFloat(examPerc.getText().toString());
 
+                // Update the Module in the database
                 DBHelper dbHelper = new DBHelper(getActivity());
-                long id = dbHelper.insertModule(nameValue, coefValue, evalValue, evalPercValue, examValue, examPercValue);
+                int rowsUpdated = dbHelper.updateModule(moduleToEdit.getId(), nameValue, coefValue, evalValue, evalPercValue, examValue, examPercValue);
 
-                if (id != -1) {
-                    Toast.makeText(getActivity(), "Données enregistrées avec succès!", Toast.LENGTH_SHORT).show();
+                if (rowsUpdated > 0) {
+                    Toast.makeText(getActivity(), "Données mises à jour avec succès!", Toast.LENGTH_SHORT).show();
                     // Return specifically to the ModuleFragment
-                    getParentFragmentManager().popBackStack("ModuleFragment", 0);
+                    getParentFragmentManager().popBackStack("ModuleFragment", 1);
+
                 } else {
-                    Toast.makeText(getActivity(), "Erreur lors de l'enregistrement des données!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Erreur lors de la mise à jour des données!", Toast.LENGTH_SHORT).show();
                 }
             } else {
                 Toast.makeText(getActivity(), validationMessage, Toast.LENGTH_LONG).show();
             }
+
         });
 
         return view;
     }
 
     private void init() {
-        name = view.findViewById(R.id.name);
-        coef = view.findViewById(R.id.coef);
-        eval = view.findViewById(R.id.eval);
-        evalPerc = view.findViewById(R.id.eval_perc);
-        exam = view.findViewById(R.id.exam);
-        examPerc = view.findViewById(R.id.exam_perc);
+        name = view.findViewById(R.id.edit_name);
+        coef = view.findViewById(R.id.edit_coef);
+        eval = view.findViewById(R.id.edit_eval);
+        evalPerc = view.findViewById(R.id.edit_eval_perc);
+        exam = view.findViewById(R.id.edit_exam);
+        examPerc = view.findViewById(R.id.edit_exam_perc);
         saveButton = view.findViewById(R.id.save);
     }
 
     private String validateFields() {
+        // Check if any field is empty
         if (name.getText().toString().isEmpty() ||
                 coef.getText().toString().isEmpty() ||
                 eval.getText().toString().isEmpty() ||
@@ -103,6 +124,7 @@ public class DataFragment extends Fragment {
             return "Veuillez entrer des pourcentages valides!";
         }
 
+        // Validate coefficient
         try {
             float coefValue = Float.parseFloat(coef.getText().toString());
             if (coefValue <= 0) {
@@ -112,6 +134,6 @@ public class DataFragment extends Fragment {
             return "Veuillez entrer un coefficient valide!";
         }
 
-        return null;
+        return null; // All validations passed
     }
 }

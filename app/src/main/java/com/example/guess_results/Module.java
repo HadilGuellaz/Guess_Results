@@ -1,6 +1,11 @@
 package com.example.guess_results;
 
-public class Module {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+public class Module implements Parcelable {
     private int id;
     private String name;
     private float coef;
@@ -29,6 +34,28 @@ public class Module {
         this.exam = exam;
         this.examPerc = examPerc;
     }
+
+    protected Module(Parcel in) {
+        id = in.readInt();
+        name = in.readString();
+        coef = in.readFloat();
+        eval = in.readFloat();
+        evalPerc = in.readFloat();
+        exam = in.readFloat();
+        examPerc = in.readFloat();
+    }
+
+    public static final Creator<Module> CREATOR = new Creator<Module>() {
+        @Override
+        public Module createFromParcel(Parcel in) {
+            return new Module(in);
+        }
+
+        @Override
+        public Module[] newArray(int size) {
+            return new Module[size];
+        }
+    };
 
     // Getters and Setters
     public int getId() {
@@ -98,5 +125,21 @@ public class Module {
                 ", exam=" + exam +
                 ", examPerc=" + examPerc +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(name);
+        dest.writeFloat(coef);
+        dest.writeFloat(eval);
+        dest.writeFloat(evalPerc);
+        dest.writeFloat(exam);
+        dest.writeFloat(examPerc);
     }
 }

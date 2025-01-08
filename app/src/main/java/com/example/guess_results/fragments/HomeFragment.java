@@ -32,12 +32,11 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-
     private void navigateToModuleFragment() {
         ModuleFragment moduleFragment = new ModuleFragment();
         FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, moduleFragment);
-        transaction.addToBackStack(null); // Allows back navigation
+        transaction.addToBackStack(null);
         transaction.commit();
     }
 }
