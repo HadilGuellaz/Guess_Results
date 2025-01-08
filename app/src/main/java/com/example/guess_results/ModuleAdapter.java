@@ -61,6 +61,7 @@ public class ModuleAdapter extends ArrayAdapter<Module> {
     private void navigateToEditDataFragment(int position) {
         Module moduleToEdit = modules.get(position);
         EditDataFragment editDataFragment = new EditDataFragment();
+
         Bundle bundle = new Bundle();
         bundle.putInt("modulePosition", position);
         bundle.putParcelable("module", moduleToEdit);

@@ -73,7 +73,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
             if (cursor != null && cursor.moveToFirst()) {
                 do {
-                    // Récupérer les valeurs des colonnes dans la base de données
                     int id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID));
                     String name = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_NAME));
                     float coef = cursor.getFloat(cursor.getColumnIndexOrThrow(COLUMN_COEF));
@@ -82,15 +81,13 @@ public class DBHelper extends SQLiteOpenHelper {
                     float exam = cursor.getFloat(cursor.getColumnIndexOrThrow(COLUMN_EXAM));
                     float examPerc = cursor.getFloat(cursor.getColumnIndexOrThrow(COLUMN_EXAM_PERC));
 
-                    // Créer un objet Module et l'ajouter à la liste
                     Module module = new Module(id, name, coef, eval, evalPerc, exam, examPerc);
                     modules.add(module);
                 } while (cursor.moveToNext());
             }
         } catch (Exception e) {
-            e.printStackTrace(); // Loguer l'erreur pour debugger si nécessaire
+            e.printStackTrace();
         } finally {
-            // Fermeture des ressources dans le bloc finally pour éviter les fuites de mémoire
             if (cursor != null) {
                 cursor.close();
             }

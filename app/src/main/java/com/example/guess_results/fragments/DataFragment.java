@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -14,11 +12,14 @@ import androidx.fragment.app.Fragment;
 
 import com.example.guess_results.DBHelper;
 import com.example.guess_results.R;
+import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class DataFragment extends Fragment {
 
-    private EditText name, coef, eval, evalPerc, exam, examPerc;
-    private Button saveButton;
+    private TextInputEditText name, coef, eval, evalPerc, exam, examPerc;
+    private MaterialCardView saveButton;
     private View view;
 
     @Nullable
@@ -44,8 +45,7 @@ public class DataFragment extends Fragment {
 
                 if (id != -1) {
                     Toast.makeText(getActivity(), "Données enregistrées avec succès!", Toast.LENGTH_SHORT).show();
-                    // Return specifically to the ModuleFragment
-                    getParentFragmentManager().popBackStack("ModuleFragment", 0);
+                    getParentFragmentManager().popBackStack("ModuleFragment", 1);
                 } else {
                     Toast.makeText(getActivity(), "Erreur lors de l'enregistrement des données!", Toast.LENGTH_SHORT).show();
                 }
@@ -58,12 +58,12 @@ public class DataFragment extends Fragment {
     }
 
     private void init() {
-        name = view.findViewById(R.id.name);
-        coef = view.findViewById(R.id.coef);
-        eval = view.findViewById(R.id.eval);
-        evalPerc = view.findViewById(R.id.eval_perc);
-        exam = view.findViewById(R.id.exam);
-        examPerc = view.findViewById(R.id.exam_perc);
+        name = view.findViewById(R.id.edit_name);
+        coef = view.findViewById(R.id.edit_coef);
+        eval = view.findViewById(R.id.edit_eval);
+        evalPerc = view.findViewById(R.id.edit_eval_perc);
+        exam = view.findViewById(R.id.edit_exam);
+        examPerc = view.findViewById(R.id.edit_exam_perc);
         saveButton = view.findViewById(R.id.save);
     }
 

@@ -1,0 +1,7 @@
+<!-- res/drawable/card_outline_background.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@android:color/black"/> <!-- Transparent background -->
+
+    <stroke
+        android:color="#006200EE"/> <!-- Border color and width -->
+</shape>

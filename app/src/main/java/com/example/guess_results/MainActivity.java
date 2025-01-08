@@ -1,6 +1,9 @@
 package com.example.guess_results;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,11 +22,21 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            Window window = getWindow();
+            WindowManager.LayoutParams layoutParams = window.getAttributes();
+            window.setStatusBarColor(getResources().getColor(R.color.cardColor)); // Replace with your color resource
+            window.setNavigationBarColor(getResources().getColor(R.color.cardColor)); // Optional: For navigation bar color
+            layoutParams.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_NEVER;
+            window.setAttributes(layoutParams);
+        }
+
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setSelectedItemId(R.id.nav_home);
         bottomNav.setOnItemSelectedListener(navListener);
 
-        // Set default fragment on launch
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, new HomeFragment())
@@ -31,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // Navigation Listener for Bottom Navigation View
     private final NavigationBarView.OnItemSelectedListener navListener =
             item -> {
                 Fragment selectedFragment = null;

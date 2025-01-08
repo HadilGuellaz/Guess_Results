@@ -43,14 +43,13 @@ public class ModuleFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.module_screen, container, false);
 
-        // Initialize UI Components
         init();
 
 
-        // Navigate to DataFragment.java when button is clicked
+
         addModuleButton.setOnClickListener(v -> navigateToDataFragment());
 
-        // Load Module Names from the Database
+
         loadModuleNames();
 
         return view;
@@ -81,7 +80,7 @@ public class ModuleFragment extends Fragment {
         DataFragment dataFragment = new DataFragment();
         FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, dataFragment);
-        transaction.addToBackStack("ModuleFragment"); // Named backstack entry
+        transaction.addToBackStack("ModuleFragment");
         transaction.commit();
     }
 
@@ -96,7 +95,7 @@ public class ModuleFragment extends Fragment {
             Toast.makeText(getActivity(), "Module supprimé avec succès!", Toast.LENGTH_SHORT).show();
             // Remove the module from the list
             modules.remove(position);
-            adapter.notifyDataSetChanged();  // Notify the adapter to update the list
+            adapter.notifyDataSetChanged();
         } else {
             Toast.makeText(getActivity(), "Erreur lors de la suppression du module!", Toast.LENGTH_SHORT).show();
         }

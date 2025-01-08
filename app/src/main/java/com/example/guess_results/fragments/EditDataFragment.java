@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -15,23 +13,23 @@ import androidx.fragment.app.Fragment;
 import com.example.guess_results.DBHelper;
 import com.example.guess_results.Module;
 import com.example.guess_results.R;
+import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.textfield.TextInputEditText;
 
 public class EditDataFragment extends Fragment {
 
-    private EditText name, coef, eval, evalPerc, exam, examPerc;
-    private Button saveButton;
+    private TextInputEditText name, coef, eval, evalPerc, exam, examPerc;
+    private MaterialCardView saveButton;
     private View view;
-    private Module moduleToEdit;  // Module object to be edited
+    private Module moduleToEdit; // Module object to be edited
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_data, container, false);
 
-        // Initialize UI elements
         init();
 
-        // Retrieve the Module object from the arguments (Bundle)
         if (getArguments() != null) {
             moduleToEdit = getArguments().getParcelable("module");
 
@@ -65,25 +63,27 @@ public class EditDataFragment extends Fragment {
                 if (rowsUpdated > 0) {
                     Toast.makeText(getActivity(), "Données mises à jour avec succès!", Toast.LENGTH_SHORT).show();
                     // Return specifically to the ModuleFragment
-                    getParentFragmentManager().popBackStack("ModuleFragment", 0);
+                    getParentFragmentManager().popBackStack("ModuleFragment", 1);
+
                 } else {
                     Toast.makeText(getActivity(), "Erreur lors de la mise à jour des données!", Toast.LENGTH_SHORT).show();
                 }
             } else {
                 Toast.makeText(getActivity(), validationMessage, Toast.LENGTH_LONG).show();
             }
+
         });
 
         return view;
     }
 
     private void init() {
-        name = view.findViewById(R.id.name);
-        coef = view.findViewById(R.id.coef);
-        eval = view.findViewById(R.id.eval);
-        evalPerc = view.findViewById(R.id.eval_perc);
-        exam = view.findViewById(R.id.exam);
-        examPerc = view.findViewById(R.id.exam_perc);
+        name = view.findViewById(R.id.edit_name);
+        coef = view.findViewById(R.id.edit_coef);
+        eval = view.findViewById(R.id.edit_eval);
+        evalPerc = view.findViewById(R.id.edit_eval_perc);
+        exam = view.findViewById(R.id.edit_exam);
+        examPerc = view.findViewById(R.id.edit_exam_perc);
         saveButton = view.findViewById(R.id.save);
     }
 
@@ -98,7 +98,6 @@ public class EditDataFragment extends Fragment {
             return "Tous les champs doivent être remplis!";
         }
 
-        // Validate numeric values for eval, exam, evalPerc, and examPerc
         try {
             float evalNote = Float.parseFloat(eval.getText().toString());
             float examNote = Float.parseFloat(exam.getText().toString());
@@ -112,7 +111,6 @@ public class EditDataFragment extends Fragment {
             return "Veuillez entrer des nombres valides pour les notes!";
         }
 
-        // Validate percentages for evaluation and exam
         try {
             float evalPercValue = Float.parseFloat(evalPerc.getText().toString());
             float examPercValue = Float.parseFloat(examPerc.getText().toString());

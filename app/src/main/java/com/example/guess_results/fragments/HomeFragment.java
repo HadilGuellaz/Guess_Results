@@ -36,7 +36,7 @@ public class HomeFragment extends Fragment {
         ModuleFragment moduleFragment = new ModuleFragment();
         FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, moduleFragment);
-        transaction.addToBackStack(null); // Allows back navigation
+        transaction.addToBackStack(null);
         transaction.commit();
     }
 }

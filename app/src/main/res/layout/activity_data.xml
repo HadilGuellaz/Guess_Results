@@ -5,104 +5,152 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:padding="16dp"
+    android:orientation="vertical">
 
-    <!-- Module name -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Module Name"
-        android:textSize="25dp"
-        android:textStyle="bold"
-        android:layout_marginTop="30dp"/>
-    <EditText
+    <!-- Module Name -->
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/name"
+        style="?attr/textInputFilledStyle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter module name "
-        android:textSize="25dp"/>
+        android:layout_height="0dp"
+        android:layout_weight="0.6"
+        android:hint="Module Name"
+        app:boxBackgroundMode="filled"
+        app:boxCornerRadiusTopStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusBottomEnd="12dp"
+        app:boxBackgroundColor="@color/cardColor"
+        app:boxStrokeColor="@android:color/transparent"
+        app:boxStrokeWidth="0dp">
 
-    <!-- coefficient  -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Coefficient"
-        android:textSize="25dp"
-        android:textStyle="bold"
-        android:layout_marginTop="30dp"/>
-    <EditText
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Coefficient -->
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/coef"
+        style="?attr/textInputFilledStyle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter module coefficient  "
-        android:textSize="25dp"/>
+        android:layout_height="0dp"
+        android:layout_weight="0.6"
+        android:hint="Enter module coefficient"
+        app:boxBackgroundMode="filled"
+        app:boxCornerRadiusTopStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusBottomEnd="12dp"
+        app:boxBackgroundColor="@color/cardColor"
+        app:boxStrokeColor="@android:color/transparent"
+        app:boxStrokeWidth="0dp">
 
-    <!-- Evaluation continue  -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Evaluation continue"
-        android:textSize="25dp"
-        android:textStyle="bold"
-        android:layout_marginTop="30dp"/>
-    <EditText
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_coef"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Evaluation Continue -->
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/eval"
+        style="?attr/textInputFilledStyle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter Evaluation continue note "
-        android:textSize="25dp"/>
+        android:layout_height="0dp"
+        android:layout_weight="0.6"
+        android:hint="Enter Evaluation continue note"
+        app:boxBackgroundMode="filled"
+        app:boxBackgroundColor="@color/cardColor"
+        app:boxStrokeColor="@android:color/transparent"
+        app:boxStrokeWidth="0dp">
 
-    <!-- Evaluation continue % -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Evaluation percentage"
-        android:textSize="25dp"
-        android:textStyle="bold"
-        android:layout_marginTop="30dp"/>
-    <EditText
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_eval"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Evaluation Percentage -->
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/eval_perc"
+        style="?attr/textInputFilledStyle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter Evaluation percentage "
-        android:textSize="25dp"/>
+        android:layout_height="0dp"
+        android:layout_weight="0.6"
+        android:hint="Enter Evaluation percentage"
+        app:boxBackgroundMode="filled"
+        app:boxBackgroundColor="@color/cardColor"
+        app:boxStrokeColor="@android:color/transparent"
+        app:boxStrokeWidth="0dp">
 
-    <!-- Exam -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Exam note"
-        android:textSize="25dp"
-        android:textStyle="bold"
-        android:layout_marginTop="30dp"/>
-    <EditText
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_eval_perc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Exam Note -->
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/exam"
+        style="?attr/textInputFilledStyle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter exam note  "
-        android:textSize="25dp"/>
+        android:layout_height="0dp"
+        android:layout_weight="0.6"
+        android:hint="Enter exam note"
+        app:boxBackgroundMode="filled"
+        app:boxBackgroundColor="@color/cardColor"
+        app:boxStrokeColor="@android:color/transparent"
+        app:boxStrokeWidth="0dp">
 
-    <!-- Exam% -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Exam percentage"
-        android:textSize="25dp"
-        android:textStyle="bold"
-        android:layout_marginTop="30dp"/>
-    <EditText
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_exam"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Exam Percentage -->
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/exam_perc"
+        style="?attr/textInputFilledStyle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter exam percentage "
-        android:textSize="25dp"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:hint="Enter exam percentage"
+        app:boxBackgroundMode="filled"
+        app:boxBackgroundColor="@color/cardColor"
+        app:boxStrokeColor="@android:color/transparent"
+        app:boxStrokeWidth="0dp">
 
-<!--Button -->
-    <Button
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_exam_perc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Save Button -->
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/save"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="save"
-        android:textSize="25dp"/>
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        app:cardBackgroundColor="@color/cardColor"
+        android:elevation="4dp"
+        app:strokeWidth="0dp"
+        app:cardCornerRadius="8dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Save"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
+
+    </com.google.android.material.card.MaterialCardView>
+
 </LinearLayout>

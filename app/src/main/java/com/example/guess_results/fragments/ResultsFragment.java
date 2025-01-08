@@ -47,34 +47,30 @@ public class ResultsFragment extends Fragment {
         for (Module module : modules) {
             TableRow newRow = new TableRow(getActivity());
 
-            // Création des TextViews pour chaque colonne
             TextView nameText = new TextView(getActivity());
             nameText.setText(module.getName());
-            nameText.setPadding(8, 8, 8, 8);
+            nameText.setPadding(16, 8, 8, 8);
 
             TextView coefText = new TextView(getActivity());
             coefText.setText(String.valueOf(module.getCoef()));
-            coefText.setPadding(8, 8, 8, 8);
+            coefText.setPadding(16, 8, 8, 8);
 
             TextView evalText = new TextView(getActivity());
             evalText.setText(String.valueOf(module.getEval()));
-            evalText.setPadding(8, 8, 8, 8);
+            evalText.setPadding(16, 8, 8, 8);
 
             TextView examText = new TextView(getActivity());
             examText.setText(String.valueOf(module.getExam()));
-            examText.setPadding(8, 8, 8, 8);
+            examText.setPadding(16, 8, 8, 8);
 
-           //calculer la moyenne total
             float moy = ((module.getEval() * module.getEvalPerc()) + (module.getExam() * module.getExamPerc())) / 100;
             totalMoy += moy * module.getCoef();
             totalCoef += module.getCoef();
 
-            // Créer un TextView pour la moyenne et l'afficher
             TextView moyText = new TextView(getActivity());
             moyText.setText(String.format("%.2f", moy));
-            moyText.setPadding(8, 8, 8, 8);
+            moyText.setPadding(16, 8, 8, 8);
 
-            // ajouter les element au tableau
             newRow.addView(nameText);
             newRow.addView(coefText);
             newRow.addView(evalText);
@@ -83,7 +79,6 @@ public class ResultsFragment extends Fragment {
             modulesTable.addView(newRow);
         }
 
-        // Calculer la moyenne globale
         if (totalCoef != 0) {
             float average = totalMoy / totalCoef;
             averageText.setText(String.format("%.2f", average));
